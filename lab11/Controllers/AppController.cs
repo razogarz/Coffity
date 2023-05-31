@@ -116,7 +116,8 @@ public class AppController : Controller {
             return Redirect("/login/");
         }
         
-        ViewBag.Data = _connector.getData() ?? new List<(int,string)>();
+        // ViewBag.Data = _connector.GetCoffe() ?? new List<(int,string)>();
+        ViewBag.Data = new List<(int,string)>();
         
         return View("Data.cshtml");
     }
@@ -135,7 +136,7 @@ public class AppController : Controller {
         
         string new_data = form["new_data"].ToString();
 
-        _connector.AddData(new_data);
+        // _connector.AddData(new_data);
         
         return Redirect("/data/");
     }
@@ -154,7 +155,7 @@ public class AppController : Controller {
         
         int id = Int32.Parse(form["id"].ToString());
 
-        _connector.RemoveData(id);
+        // _connector.RemoveData(id);
         
         return Redirect("/data/");
     }

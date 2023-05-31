@@ -21,11 +21,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Pages\Critical.cshtml" />
-      <AdditionalFiles Include="Pages\Data.cshtml" />
-      <AdditionalFiles Include="Pages\Login.cshtml" />
-      <AdditionalFiles Include="Pages\PageList.cshtml" />
-      <AdditionalFiles Include="Pages\Panel.cshtml" />
+      <AdditionalFiles Include="Views\Critical.cshtml" />
+      <AdditionalFiles Include="Views\Data.cshtml" />
+      <AdditionalFiles Include="Views\Login.cshtml" />
+      <AdditionalFiles Include="Views\PageList.cshtml" />
+      <AdditionalFiles Include="Views\Panel.cshtml" />
     </ItemGroup>
 
 </Project>

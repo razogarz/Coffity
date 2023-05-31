@@ -20,7 +20,7 @@ public class Connector {
                 Console.WriteLine("Error creating tables.");
                 return;
             }
-            if ( !FillTables(connection)) {
+            if ( !LoadData(connection)) {
                 Console.WriteLine("Error filing tables.");
                 return;
             }
@@ -54,10 +54,6 @@ public class Connector {
             cmd.CommandText = "CREATE TABLE IF NOT EXISTS ratings (id INTEGER NOT NULL, login TEXT NOT NULL, score INT, PRIMARY KEY (id, login));";
             cmd.ExecuteNonQuery();
 
-            // to usunąć
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS data (Id INTEGER PRIMARY KEY AUTOINCREMENT, Data TEXT NOT NULL);";
-            cmd.ExecuteNonQuery();
-            
         } catch (Exception e){ 
             Console.WriteLine(e.Message);
             return false;}
@@ -96,7 +92,7 @@ public class Connector {
         }
     }
     
-    public bool FillTables(SqliteConnection connection) {
+    private bool LoadData(SqliteConnection connection) {
         try {
 
             string[] tabNames = {"coffe", "recipes", "categories"};
@@ -128,7 +124,7 @@ public class Connector {
         return true;
     }
     
-    private static string getHashedData(string input) {
+    private static string HashData(string input) {
         using (var md5 = MD5.Create()) {
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
             byte[] hashBytes = md5.ComputeHash(inputBytes);
@@ -150,23 +146,8 @@ public class Connector {
                     }
                 }
 
-                var passHash = getHashedData(password);
+                var passHash = HashData(password);
                 cmd.CommandText = $"INSERT INTO Users (Login, Password) VALUES ('{login}', '{passHash}');";
-                cmd.ExecuteNonQuery();
-            }
-        } catch (Exception e){ 
-            Console.WriteLine(e.Message);
-            return false;}
-        return true;
-    }
-    
-    public bool AddData(string data) {
-        try {
-            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
-            {
-                connection.Open();
-                SqliteCommand cmd = connection.CreateCommand();
-                cmd.CommandText = $"INSERT INTO Data (Data) VALUES ('{data}');";
                 cmd.ExecuteNonQuery();
             }
         } catch (Exception e){ 
@@ -182,7 +163,7 @@ public class Connector {
                 connection.Open();
                 SqliteCommand cmd = connection.CreateCommand();
                 
-                var passHash = getHashedData(password);
+                var passHash = HashData(password);
                 Console.WriteLine($"Validated user {login} with password {password} ({passHash})");
                 cmd.CommandText = $"SELECT * FROM Users WHERE Login='{login}' AND Password='{passHash}';";
                 using (var reader = cmd.ExecuteReader())
@@ -198,23 +179,22 @@ public class Connector {
         return false;
     }
 
-    public List<(int, string)>? getData() {
+    public List<(int,string,string,string)>? GetCoffe() {
         try {
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
             {
                 connection.Open();
                 SqliteCommand cmd = connection.CreateCommand();
                 
-                cmd.CommandText = $"SELECT * FROM Data;";
+                cmd.CommandText = $"SELECT * FROM coffe;";
                 using (var reader = cmd.ExecuteReader()) {
-                    var data = new List<(int,string)>();
+                    var data = new List<(int,string,string,string)>();
                     while (reader.Read()) {
-                        string str = "";
                         int id = Int32.Parse(reader.GetString(0));
-                        for (int a = 1; a < reader.FieldCount; a++) {
-                            str += " " + reader.GetString(a);
-                        }
-                        data.Add((id, str.Length > 0 ? str.Substring(1) : ""));
+                        string name = reader.GetString(1);
+                        string img = reader.GetString(2);
+                        string desc = reader.GetString(3);
+                        data.Add((id, name, img, desc));
                     }
                     return data;
                 }
@@ -223,23 +203,68 @@ public class Connector {
             Console.WriteLine(e.Message);
             return null;}
     }
-
-    public bool RemoveData(int id) {
-        using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString)) {
-            try {
+    
+    public (int,string,string,string,string,string)? GetCoffeWithRecipe(int id) {
+        try {
+            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+            {
                 connection.Open();
                 SqliteCommand cmd = connection.CreateCommand();
-                cmd.CommandText =
-                    $"DELETE FROM Data WHERE id = {id};";
-                cmd.ExecuteNonQuery();
+                
+                cmd.CommandText = $"SELECT c.id, c.name, c.img, c.description, r.ingredients, r.method " +
+                                  $"FROM coffe as c " +
+                                  $"JOIN recipes as r ON c.id = r.id " +
+                                  $"WHERE r.id = {id} " +
+                                  $"LIMIT 1;";
+                
+                using (var reader = cmd.ExecuteReader()) {
+                    var data = new List<(int,string,string,string)>();
+                    reader.Read();
+                    string name = reader.GetString(1);
+                    string img = reader.GetString(2);
+                    string desc = reader.GetString(3);
+                    string ing = reader.GetString(4);
+                    string met = reader.GetString(5); 
+                    return (id, name, img, desc, ing, met);
+                }
             }
-            catch (Exception e) {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-
-            return true;
-        }
+        } catch (Exception e){ 
+            Console.WriteLine(e.Message);
+            return null;}
     }
+    
+    //
+    // public bool AddData(string data) {
+    //     try {
+    //         using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+    //         {
+    //             connection.Open();
+    //             SqliteCommand cmd = connection.CreateCommand();
+    //             cmd.CommandText = $"INSERT INTO Data (Data) VALUES ('{data}');";
+    //             cmd.ExecuteNonQuery();
+    //         }
+    //     } catch (Exception e){ 
+    //         Console.WriteLine(e.Message);
+    //         return false;}
+    //     return true;
+    // }
+    //
+    // public bool RemoveData(int id) {
+    //     using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString)) {
+    //         try {
+    //             connection.Open();
+    //             SqliteCommand cmd = connection.CreateCommand();
+    //             cmd.CommandText =
+    //                 $"DELETE FROM Data WHERE id = {id};";
+    //             cmd.ExecuteNonQuery();
+    //         }
+    //         catch (Exception e) {
+    //             Console.WriteLine(e.Message);
+    //             return false;
+    //         }
+    //
+    //         return true;
+    //     }
+    // }
 
 }
