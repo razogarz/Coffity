@@ -1,0 +1,37 @@
+@page
+@model lab10.Controllers.Panel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+    @if (ViewBag.login != null && ViewBag.password != null)
+    {
+        <h2>Panel</h2>
+        <br/>
+        
+        <p>Login: @ViewBag.login</p>
+        <p>Hasło: @ViewBag.password</p>
+        <br/>
+        
+        <a href="/list">Lista dostępnych podstron</a><br/><br/>
+
+        <form asp-controller="AppController" asp-action="HandleLogoutForm" action="/logout" method="post">
+            <div>
+                <button type="submit">Wyloguj</button>
+            </div>
+        </form>
+
+    }
+    
+</div>
+</body>
+</html>

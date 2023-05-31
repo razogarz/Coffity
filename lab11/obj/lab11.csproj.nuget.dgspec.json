@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj": {}
+  },
+  "projects": {
+    "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj",
+        "projectName": "lab11",
+        "projectPath": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj",
+        "packagesPath": "/home/m_zsuetam/.nuget/packages/",
+        "outputPath": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/m_zsuetam/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/home/m_zsuetam/.dotnet/sdk/7.0.302/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/m_zsuetam/.dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
