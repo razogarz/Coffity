@@ -20,12 +20,4 @@
       <_ContentIncludedByDefault Remove="Controllers\Pages\Panel.cshtml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <AdditionalFiles Include="Views\Critical.cshtml" />
-      <AdditionalFiles Include="Views\Data.cshtml" />
-      <AdditionalFiles Include="Views\Login.cshtml" />
-      <AdditionalFiles Include="Views\PageList.cshtml" />
-      <AdditionalFiles Include="Views\Panel.cshtml" />
-    </ItemGroup>
-
 </Project>

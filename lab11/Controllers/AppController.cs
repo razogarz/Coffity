@@ -38,7 +38,6 @@ public class AppController : Controller {
         {
             sort = "asc";
         }
-        Console.WriteLine("sort: " + sort);
         ViewBag.sort = sort;
 
         var coffe_list = _connector.GetCoffe(_selected_categories, sort);
@@ -56,19 +55,19 @@ public class AppController : Controller {
         
         return Redirect("/?categories=" + cat_names + "&sort=" + sort);
     }
-    
-    [HttpGet]
-    [Route("/list/")]
-    public IActionResult List()
-    {
-        var login = HttpContext.Session.GetString("login");
-        var password = HttpContext.Session.GetString("haslo");
-        ViewBag.Login = login;
-        ViewBag.Password = password;
-        
-        return View("PageList.cshtml");
-    }
-    
+    //
+    // [HttpGet]
+    // [Route("/list/")]
+    // public IActionResult List()
+    // {
+    //     var login = HttpContext.Session.GetString("login");
+    //     var password = HttpContext.Session.GetString("haslo");
+    //     ViewBag.Login = login;
+    //     ViewBag.Password = password;
+    //     
+    //     return View("PageList.cshtml");
+    // }
+    //
     [HttpGet]
     [Route("/login/")]
     public IActionResult Login()
