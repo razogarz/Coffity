@@ -60,7 +60,7 @@
             @foreach (ValueTuple<int, string, string, string> cof in ViewBag.coffe_list) {
                 <li>
                     @(cof.Item2) &nbsp;
-                    <form asp-controller="AppController" asp-action="HandleOpenCoffeForm" action="/coffe" method="post">
+                    <form asp-controller="AppController" asp-action="Coffe" action="/coffe" method="post">
                         <input type="hidden" id="id" name="id" value="@(cof.Item1)"/>
                         <div>
                             <button type="submit">Learn more!</button>

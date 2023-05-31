@@ -9,9 +9,12 @@ public class AppController : Controller {
 
     private SortedSet<string> _categories;
     
+    private bool _return_with_paths = false;
+    
     public AppController(Connector connector) {
         _connector = connector;
         _categories = _connector.GetCategories();
+        _return_with_paths = Driver.return_with_paths;
     }
     
     [HttpGet]
@@ -44,7 +47,14 @@ public class AppController : Controller {
         if (coffe_list != null) {
             ViewBag.coffe_list = coffe_list;
         }
-        return View("Index.cshtml");
+
+        if (_return_with_paths){
+            return View("Index.cshtml");
+        }
+        else{
+            return View();
+        }
+        
     }
     
     [HttpPost]
@@ -78,7 +88,14 @@ public class AppController : Controller {
         if (login != null && password != null) {
             return Redirect("/panel/");
         }
-        return View("Login.cshtml");
+        
+        if (_return_with_paths){
+            return View("Login.cshtml");
+        }
+        else{
+            return View();
+        }
+        
     }
     
     [HttpPost] 
@@ -98,7 +115,15 @@ public class AppController : Controller {
         }
         
         ViewBag.ErrorMessage = "Niepoprawny login lub hasło";
-        return View("Login.cshtml");
+        
+        // if (_return_with_paths){
+        //     return View("Login.cshtml");
+        // }
+        // else{
+        //     return View();
+        // }
+        return Redirect("/login/");
+        
     }
 
     [HttpPost] 
@@ -202,13 +227,20 @@ public class AppController : Controller {
     
     [HttpPost]
     [Route("/coffe")]
-    public IActionResult HandleOpenCoffeForm(IFormCollection form) {
+    public IActionResult Coffe(IFormCollection form) {
         int id = Int32.Parse(form["id"].ToString());
 
         ViewBag.coffe = _connector.GetCoffeWithRecipeAndCategories(id);
         
 
-        return View("Coffe.cshtml");
+        
+        if (_return_with_paths){
+            return View("Coffe.cshtml");
+        }
+        else{
+            return View();
+        }
+        
     }
     
     [HttpGet]

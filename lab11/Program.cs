@@ -5,6 +5,8 @@ using Microsoft.Data.Sqlite;
 
 class Driver {
 
+    public static bool return_with_paths = false;
+    
     public static void Main(string[] args) {
         
         var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +14,18 @@ class Driver {
         //Dodanie obsługo sesji
         builder.Services.AddDistributedMemoryCache();
         
+        // find --return-with-paths in args
+        foreach (var arg in args)
+        {
+            if (arg == "--return-with-paths")
+            {
+                return_with_paths = true;
+            }
+        }
+        
         // Register the implementation as a transient service
         builder.Services.AddTransient<Connector>();
-        
+
         Connector connector = new Connector();
         connector.InitBD();
 
