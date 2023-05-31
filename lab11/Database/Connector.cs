@@ -5,11 +5,10 @@ namespace lab10;
 
 public class Connector {
 
-    // private string dataSource = "./app.db";
     private SqliteConnectionStringBuilder connectionStringBuilder = new SqliteConnectionStringBuilder();
 
     public Connector() {
-        connectionStringBuilder.DataSource = "./app.db";
+        connectionStringBuilder.DataSource = "./Database/app.db";
     }
     
     public void InitBD() {
@@ -21,6 +20,10 @@ public class Connector {
                 Console.WriteLine("Error creating tables.");
                 return;
             }
+            if ( !FillTables(connection)) {
+                Console.WriteLine("Error filing tables.");
+                return;
+            }
 
             AddUser("admin", "admin");
             
@@ -30,11 +33,95 @@ public class Connector {
     public bool CreateTables(SqliteConnection connection) {
         try {
             SqliteCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, Login TEXT NOT NULL, Password TEXT NOT NULL);";
+            
+            // users
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT NOT NULL, password TEXT NOT NULL);";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS Data (Id INTEGER PRIMARY KEY AUTOINCREMENT, Data TEXT NOT NULL);";
+            // coffe
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS coffe (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, img TEXT, description TEXT);";
             cmd.ExecuteNonQuery();
+            
+            // recipes
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS recipes (id INTEGER PRIMARY KEY AUTOINCREMENT, ingredients TEXT NOT NULL, method TEXT NOT NULL);";
+            cmd.ExecuteNonQuery();
+            
+            // categories
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS categories (id INTEGER NOT NULL, category TEXT NOT NULL, PRIMARY KEY (id, category));";
+            cmd.ExecuteNonQuery();
+            
+            // ratings
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS ratings (id INTEGER NOT NULL, login TEXT NOT NULL, score INT, PRIMARY KEY (id, login));";
+            cmd.ExecuteNonQuery();
+
+            // to usunąć
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS data (Id INTEGER PRIMARY KEY AUTOINCREMENT, Data TEXT NOT NULL);";
+            cmd.ExecuteNonQuery();
+            
+        } catch (Exception e){ 
+            Console.WriteLine(e.Message);
+            return false;}
+        return true;
+    }
+    
+    
+    private static (List<string>, List<List<string?>>) ReadFromCsv(string path, char sep=',') {
+        var contnet = new List<List<string?>>();
+        List<string> headers = new List<string>();
+        using (StreamReader reader = new StreamReader(path))
+        {
+            string? line;
+            if ((line = reader.ReadLine()) != null) {
+                headers = new List<string>(line.Split(sep));
+            }
+            while ((line = reader.ReadLine()) != null)
+            {
+                var row = new List<string?>(line.Split(sep))
+                    .Select(x=> x != "" ? x : null ).ToList();
+                contnet.Add(row);
+            }
+        }
+
+        return (headers, contnet);
+    }
+    
+    private static int GetRowCount(SqliteConnection connection, string tableName)
+    {
+        string query = "SELECT COUNT(*) FROM " + tableName;
+        
+        using (SqliteCommand command = new SqliteCommand(query, connection))
+        {
+            int rowCount = Convert.ToInt32(command.ExecuteScalar());
+            return rowCount;
+        }
+    }
+    
+    public bool FillTables(SqliteConnection connection) {
+        try {
+
+            string[] tabNames = {"coffe", "recipes", "categories"};
+            foreach (var tabName in tabNames ) {
+                
+                var (headers, content) = ReadFromCsv($"./Database/table_{tabName}.csv", ';');
+                if (GetRowCount(connection, tabName) == 0) {
+                    using (var transaction = connection.BeginTransaction()) {
+                        var insertCmdText = $"INSERT INTO {tabName} (" 
+                                            + string.Join(", ", headers) + ") VALUES " 
+                                            + string.Join(", ", content.Select(
+                                                    row => "(" + string.Join(", ", 
+                                                        row.Select(x => x != null ? '"'+x+'"' : "NULL")
+                                                    ) + ")"
+                                                )
+                                            );
+                        // Console.WriteLine(insertCmdText);
+                        
+                        SqliteCommand insertCmd = connection.CreateCommand();
+                        insertCmd.CommandText = insertCmdText;
+                        insertCmd.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                }
+            }
         } catch (Exception e){ 
             Console.WriteLine(e.Message);
             return false;}
