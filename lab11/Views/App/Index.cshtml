@@ -9,11 +9,68 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Coffity</title>
+    <script>
+    function changeHiddenValue() {
+        var sortInput = document.getElementById("sort_input");
+        var sortLabel = document.getElementById("sort_label");
+
+        if (sortInput.value === "asc") {
+            sortInput.value = "desc";
+            sortLabel.innerText = "By name (desc)";
+        } else {
+            sortInput.value = "asc";
+            sortLabel.innerText = "By name (asc)";
+        }
+    }
+    </script>
+
 </head>
 <body>
 <div>
-    Hello Madafakas :)
+    <h1>Coffity</h1>
+    
+    
+    @if (ViewBag.coffe_list != null) {
+        <form asp-controller="AppController" asp-action="HandleCategories" action="/filters" method="post">
+            <h4>Categories:</h4>
+            @foreach ((string, bool) category in ViewBag.cats_list) {
+                <div>
+                    <label>
+                        <input type="checkbox" name="selectedCategories" value="@category.Item1" checked="@(category.Item2)"/>
+                        @category.Item1.Replace('_', ' ')
+                    </label>
+                </div>
+            }
+            <h4>Sorting:</h4>
+            <input type="hidden" name="sort" id="sort_input" value="@ViewBag.sort"/>
+            <label id="sort_label">By name (@ViewBag.sort)</label>
+            <button type="button" onclick="changeHiddenValue()">Change sorting</button>
+
+            <br><br>
+            <button type="submit">Filter!</button>
+        </form>
+    }
+    else {
+        <p>No categories available.</p>
+    }
+    
+    <h2>Coffees:</h2>
+    <ul>
+        @if (ViewBag.coffe_list != null) {
+            @foreach (ValueTuple<int, string, string, string> cof in ViewBag.coffe_list) {
+                <li>
+                    @(cof.Item2) &nbsp;
+                    <form asp-controller="AppController" asp-action="HandleOpenCoffeForm" action="/coffe" method="post">
+                        <input type="hidden" id="id" name="id" value="@(cof.Item1)"/>
+                        <div>
+                            <button type="submit">Learn more!</button>
+                        </div>
+                    </form>
+                </li>
+            }
+        }
+    </ul>
 </div>
 </body>
 </html>

@@ -7,6 +7,8 @@ public class Connector {
 
     private SqliteConnectionStringBuilder connectionStringBuilder = new SqliteConnectionStringBuilder();
 
+    private SortedSet<string> _categories = new SortedSet<string>();
+
     public Connector() {
         connectionStringBuilder.DataSource = "./Database/app.db";
     }
@@ -179,14 +181,30 @@ public class Connector {
         return false;
     }
 
-    public List<(int,string,string,string)>? GetCoffe() {
+    public List<(int,string,string,string)>? GetCoffe(HashSet<string>? categories = null, string? sort = null) {
         try {
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
             {
                 connection.Open();
                 SqliteCommand cmd = connection.CreateCommand();
-                
-                cmd.CommandText = $"SELECT * FROM coffe;";
+
+                cmd.CommandText = @"
+                    SELECT *
+                    FROM coffe
+                    ";
+                if (categories != null && categories.Count > 0) {
+                    cmd.CommandText += " WHERE id IN (" + string.Join(" INTERSECT ", categories.Select(x => 
+                        $@" SELECT id
+                            from categories
+                            WHERE category == '{x}'"
+                    ));
+                    cmd.CommandText += ")";
+                }
+
+                if (sort != null) {
+                    cmd.CommandText += $" ORDER BY name {sort}";
+                }
+                cmd.CommandText += ";";
                 using (var reader = cmd.ExecuteReader()) {
                     var data = new List<(int,string,string,string)>();
                     while (reader.Read()) {
@@ -204,18 +222,22 @@ public class Connector {
             return null;}
     }
     
-    public (int,string,string,string,string,string)? GetCoffeWithRecipe(int id) {
+    public (int,string,string,string,string,string,List<string>)? GetCoffeWithRecipeAndCategories(int id) {
         try {
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
             {
                 connection.Open();
                 SqliteCommand cmd = connection.CreateCommand();
                 
-                cmd.CommandText = $"SELECT c.id, c.name, c.img, c.description, r.ingredients, r.method " +
-                                  $"FROM coffe as c " +
-                                  $"JOIN recipes as r ON c.id = r.id " +
-                                  $"WHERE r.id = {id} " +
-                                  $"LIMIT 1;";
+                cmd.CommandText = $@"
+                    SELECT c.id, c.name, c.img, c.description, r.ingredients, r.method, GROUP_CONCAT(cat.category, ';')
+                    FROM coffe as c
+                             JOIN recipes as r ON c.id = r.id
+                             JOIN categories as cat ON cat.id = c.id
+                    WHERE r.id = {id}
+                    GROUP BY c.id, c.name, c.img, c.description, r.ingredients, r.method
+                    LIMIT 1;
+                    ";
                 
                 using (var reader = cmd.ExecuteReader()) {
                     var data = new List<(int,string,string,string)>();
@@ -225,7 +247,38 @@ public class Connector {
                     string desc = reader.GetString(3);
                     string ing = reader.GetString(4);
                     string met = reader.GetString(5); 
-                    return (id, name, img, desc, ing, met);
+                    List<string> cat = reader.GetString(6).Split(';').ToList();
+                    return (id, name, img, desc, ing, met, cat);
+                }
+            }
+        } catch (Exception e){ 
+            Console.WriteLine(e.Message);
+            return null;}
+    }
+
+    public SortedSet<string> GetCategories() {
+        if (_categories.Count != 0) {
+            return _categories;
+        }
+        try {
+            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                SqliteCommand cmd = connection.CreateCommand();
+                
+                cmd.CommandText = @"
+                    SELECT DISTINCT category
+                    FROM categories;
+                    ";
+                
+                using (var reader = cmd.ExecuteReader()) {
+                    var data = new SortedSet<string>();
+                    while (reader.Read()) {
+                        string cat = reader.GetString(0);
+                        data.Add(cat);
+                    }
+                    _categories = data;
+                    return _categories;
                 }
             }
         } catch (Exception e){ 

@@ -8,23 +8,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b342b7d5-d6f2-4fe1-b8f8-67331b2989fa" name="Changes" comment="added .run">
+    <list default="true" id="b342b7d5-d6f2-4fe1-b8f8-67331b2989fa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lab11/Views/App/Coffe.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab11/Views/App/Coffe.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Solution1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Solution1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab11/Controllers/AppController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Controllers/AppController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab11/Database/Connector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Database/Connector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Database/app.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Critical.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Critical.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Critical.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Critical.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Data.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Data.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Data.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Data.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Index.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Index.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Login.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Login.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Login.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/PageList.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/PageList.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/PageList.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/PageList.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Panel.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Panel.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/Pages/Panel.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Panel.cshtml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab11/lab11.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/lab11.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/Views/App/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/Views/App/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/bin/Debug/net7.0/lab11.dll" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/bin/Debug/net7.0/lab11.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/bin/Debug/net7.0/lab11.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/bin/Debug/net7.0/lab11.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.dll" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/lab11.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/ref/lab11.dll" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/ref/lab11.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/refint/lab11.dll" beforeDir="false" afterPath="$PROJECT_DIR$/lab11/obj/Debug/net7.0/refint/lab11.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Controllers/AppController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/m_zsuetam/crs/pz2/Coffity/lab11/Controllers/AppController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -97,7 +96,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685542330796</updated>
-      <workItem from="1685542332172" duration="9727000" />
+      <workItem from="1685542332172" duration="11928000" />
     </task>
     <task id="LOCAL-00001" summary="new template">
       <created>1685542500454</created>
@@ -148,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685552680603</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="new structure">
+      <created>1685553839260</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685553839260</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +179,7 @@
     <MESSAGE value="quick fix" />
     <MESSAGE value="db init" />
     <MESSAGE value="added .run" />
-    <option name="LAST_COMMIT_MESSAGE" value="added .run" />
+    <MESSAGE value="new structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="new structure" />
   </component>
 </project>
