@@ -13,6 +13,13 @@ public class AppController : Controller {
     }
     
     [HttpGet]
+    [Route("/")]
+    public IActionResult Index()
+    {
+        return View("Index.cshtml");
+    }
+    
+    [HttpGet]
     [Route("/list/")]
     public IActionResult List()
     {
@@ -26,7 +33,7 @@ public class AppController : Controller {
     
     [HttpGet]
     [Route("/panel/")]
-    public IActionResult Index() {
+    public IActionResult Panel() {
         var login = HttpContext.Session.GetString("login");
         var password = HttpContext.Session.GetString("haslo");
 

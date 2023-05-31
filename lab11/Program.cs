@@ -49,11 +49,11 @@ class Driver {
             name: "default",
             pattern: "{action=Index}/");
 
-        app.MapGet("", context =>
-        {
-            context.Response.Redirect("/login");
-            return Task.CompletedTask;
-        });
+        // app.MapGet("", context =>
+        // {
+        //     context.Response.Redirect("");
+        //     return Task.CompletedTask;
+        // });
 
         app.Use(async (ctx, next) =>
         {
@@ -64,7 +64,7 @@ class Driver {
                 //Re-execute the request so the user gets the error page
                 string originalPath = ctx.Request.Path.Value;
                 ctx.Items["originalPath"] = originalPath;
-                ctx.Request.Path = "/login";
+                ctx.Request.Path = "/";
                 await next();
             }
         });

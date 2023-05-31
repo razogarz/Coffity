@@ -11,4 +11,21 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Controllers\Pages\Critical.cshtml" />
+      <_ContentIncludedByDefault Remove="Controllers\Pages\Data.cshtml" />
+      <_ContentIncludedByDefault Remove="Controllers\Pages\Home.cshtml" />
+      <_ContentIncludedByDefault Remove="Controllers\Pages\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="Controllers\Pages\PageList.cshtml" />
+      <_ContentIncludedByDefault Remove="Controllers\Pages\Panel.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Critical.cshtml" />
+      <AdditionalFiles Include="Pages\Data.cshtml" />
+      <AdditionalFiles Include="Pages\Login.cshtml" />
+      <AdditionalFiles Include="Pages\PageList.cshtml" />
+      <AdditionalFiles Include="Pages\Panel.cshtml" />
+    </ItemGroup>
+
 </Project>

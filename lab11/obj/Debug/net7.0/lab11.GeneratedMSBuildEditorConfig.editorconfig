@@ -16,22 +16,36 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/m_zsuetam/crs/pz2/Coffity/lab11
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Controllers/Critical.cshtml]
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Pages/Critical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = Q3JpdGljYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Controllers/Data.cshtml]
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Pages/Data.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = RGF0YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Controllers/Login.cshtml]
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = TG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
-
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Controllers/PageList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZUxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Controllers/Panel.cshtml]
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Pages/PageList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = UGFnZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Pages/Panel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = UGFuZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
