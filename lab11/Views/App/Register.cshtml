@@ -6,18 +6,17 @@
 
 <html>
 <head>
-    <title>Coffity</title>
-    <link rel="stylesheet" href="~/Css/style.css" asp-append-version="true" />
+    <title></title>
 </head>
 <body>
 <div>
     <a href="/">< Go back</a>
     
-    <h2>Login</h2>
+    <h2>Register</h2>
     
     
     
-    <form  asp-controller="AppController" asp-action="HandleLoginForm" action="/login" method="post">
+    <form  asp-controller="AppController" asp-action="Register" action="/register" method="post">
         <div>
             <label for="login">Login:</label>
             <input type="text" id="login" name="login" />
@@ -28,7 +27,7 @@
         </div>
         <br/>
         <div>
-            <button type="submit">Zaloguj</button>
+            <button type="submit">Zarejestruj</button>
         </div>
     </form>
     @if (ViewBag.ErrorMessage != null)

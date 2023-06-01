@@ -28,7 +28,7 @@ public class Connector {
                 return;
             }
 
-            AddUser("admin", "admin");
+            AddUser("admin", "admin", true);
             
             Console.WriteLine("Db init success.");
         }
@@ -38,7 +38,7 @@ public class Connector {
             SqliteCommand cmd = connection.CreateCommand();
             
             // users
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT NOT NULL, password TEXT NOT NULL);";
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT NOT NULL, password TEXT NOT NULL, admin BOOL NOT NULL);";
             cmd.ExecuteNonQuery();
 
             // coffe
@@ -54,7 +54,7 @@ public class Connector {
             cmd.ExecuteNonQuery();
             
             // ratings
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS ratings (id INTEGER NOT NULL, login TEXT NOT NULL, score INT, PRIMARY KEY (id, login));";
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS liking (user_id INTEGER NOT NULL, coffe_id INTEGER NOT NULL, PRIMARY KEY (user_id, coffe_id));";
             cmd.ExecuteNonQuery();
 
         } catch (Exception e){ 
@@ -135,7 +135,7 @@ public class Connector {
         }
     }
     
-    public bool AddUser(string login, string password) {
+    public bool AddUser(string login, string password, bool admin = false) {
         try {
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
             {
@@ -150,7 +150,8 @@ public class Connector {
                 }
 
                 var passHash = HashData(password);
-                cmd.CommandText = $"INSERT INTO Users (Login, Password) VALUES ('{login}', '{passHash}');";
+                var adminBool = admin ? "TRUE" : "FALSE";
+                cmd.CommandText = $"INSERT INTO Users (login, password, admin) VALUES ('{login}', '{passHash}', {adminBool});";
                 cmd.ExecuteNonQuery();
             }
         } catch (Exception e){ 
@@ -158,8 +159,33 @@ public class Connector {
             return false;}
         return true;
     }
-    
-    public bool ValidateUser(string login, string password) {
+
+    public bool ExistsUser(string login) {
+        // validated, if admin
+        try {
+            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString)) {
+                connection.Open();
+                SqliteCommand cmd = connection.CreateCommand();
+
+                cmd.CommandText = $"SELECT * FROM Users WHERE Login='{login}';";
+                using (var reader = cmd.ExecuteReader()) {
+                    if (reader.Read()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        catch (Exception e) {
+            Console.WriteLine(e.Message);
+            return false;
+
+        }
+
+        return false;
+    }
+
+    public (bool, bool) ValidateUser(string login, string password) { 
+        // validated, if admin
         try {
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
             {
@@ -167,19 +193,20 @@ public class Connector {
                 SqliteCommand cmd = connection.CreateCommand();
                 
                 var passHash = HashData(password);
-                Console.WriteLine($"Validated user {login} with password {password} ({passHash})");
+                // Console.WriteLine($"Validated user {login} with password {password} ({passHash})");
                 cmd.CommandText = $"SELECT * FROM Users WHERE Login='{login}' AND Password='{passHash}';";
                 using (var reader = cmd.ExecuteReader())
                 {
                     if (reader.Read()) {
-                        return true;
+                        bool admin = reader.GetString(3) == "1";
+                        return (true, admin);
                     }
                 }
             }
         } catch (Exception e){ 
             Console.WriteLine(e.Message);
-            return false;}
-        return false;
+            return (false, false);}
+        return (false, false);
     }
 
     public List<(int,string,string,string)>? GetCoffe(HashSet<string>? categories = null, string? sort = null) {
@@ -223,7 +250,7 @@ public class Connector {
             return null;}
     }
     
-    public (int,string,string,string,string,string,List<string>)? GetCoffeWithRecipeAndCategories(int id) {
+    public (int,string,string,string,string,string,List<string>,int)? GetCoffeWithRecipeAndCategories(int id) {
         try {
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
             {
@@ -240,17 +267,39 @@ public class Connector {
                     LIMIT 1;
                     ";
                 
+                string name;
+                string img;
+                string desc;
+                string ing;
+                string met;
+                List<string> cat;
                 using (var reader = cmd.ExecuteReader()) {
-                    var data = new List<(int,string,string,string)>();
                     reader.Read();
-                    string name = reader.GetString(1);
-                    string img = reader.GetString(2);
-                    string desc = reader.GetString(3);
-                    string ing = reader.GetString(4);
-                    string met = reader.GetString(5); 
-                    List<string> cat = reader.GetString(6).Split(';').ToList();
-                    return (id, name, img, desc, ing, met, cat);
+                    name = reader.GetString(1);
+                    img = reader.GetString(2);
+                    desc = reader.GetString(3);
+                    ing = reader.GetString(4);
+                    met = reader.GetString(5); 
+                    cat = reader.GetString(6).Split(';').ToList();
                 }
+
+                int likes;
+                cmd.CommandText = $@"
+                    select ifnull(count(user_id),0) as likes
+                    from liking
+                    where coffe_id = {id}
+                    group by coffe_id;
+                    ";
+                using (var reader = cmd.ExecuteReader()) {
+                    if (reader.Read()) {
+                        likes = Int32.Parse(reader.GetString(0));
+                    }
+                    else {
+                        likes = 0;
+                    }
+                }
+                
+                return (id, name, img, desc, ing, met, cat, likes);
             }
         } catch (Exception e){ 
             Console.WriteLine(e.Message);
@@ -285,6 +334,62 @@ public class Connector {
         } catch (Exception e){ 
             Console.WriteLine(e.Message);
             return null;}
+    }
+
+    public bool? GetIfUserLikesCoffe(string login, int coffe_id) {
+        try {
+            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                SqliteCommand cmd = connection.CreateCommand();
+                
+                cmd.CommandText = $@"
+                    select *
+                    from liking
+                    join users u on liking.user_id = u.id
+                    where coffe_id = {coffe_id} and u.login = '{login}';
+                    ";
+                
+                using (var reader = cmd.ExecuteReader()) {
+                    if (reader.Read()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+        } catch (Exception e){ 
+            Console.WriteLine(e.Message);
+            return null;}
+    }
+
+    public void LikeCoffe(string login, int coffe_id, bool like) {
+        try {
+            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                SqliteCommand cmd = connection.CreateCommand();
+
+                if (like) {
+                    cmd.CommandText = $@"
+                        INSERT INTO liking (user_id, coffe_id)
+                        VALUES ((SELECT id FROM users WHERE login = '{login}'), {coffe_id});
+                        ";
+                }
+                else{
+                    cmd.CommandText = $@"
+                        DELETE FROM liking 
+                               WHERE user_id = (SELECT id FROM users WHERE login = '{login}') AND coffe_id = {coffe_id};
+                        ";
+                }
+
+                cmd.ExecuteNonQuery();
+            }
+        } catch (Exception e){ 
+            // Console.WriteLine(e.Message);
+            // no need to check if already likes X)
+        }
     }
     
     //

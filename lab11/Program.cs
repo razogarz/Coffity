@@ -1,6 +1,8 @@
 using lab10;
 using lab10.Controllers;
+using lab10.Data;
 using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 
 class Driver {
@@ -28,6 +30,18 @@ class Driver {
 
         Connector connector = new Connector();
         connector.InitBD();
+        
+        
+        builder.Services.AddDbContext<MvcCoffeContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("MvcCoffeContext") 
+                              ?? throw new InvalidOperationException("Connection string 'MvcCoffeContext' not found.")));
+        builder.Services.AddDbContext<MvcRecipeContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("MvcRecipeContext") 
+                              ?? throw new InvalidOperationException("Connection string 'MvcRecipeContext' not found.")));
+        builder.Services.AddDbContext<MvcCategoryContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("MvcCategoryContext") 
+                              ?? throw new InvalidOperationException("Connection string 'MvcCategoryContext' not found.")));
+
 
 
         builder.Services.AddSession(options =>

@@ -15,11 +15,16 @@
     @if (ViewBag.login != null && ViewBag.password != null)
     {
         <h2>Panel</h2>
+
+        <h3>
+            Logged as: @ViewBag.login
+        </h3>
+        
+        <a href="/">Home</a>
+        <br/>
         <br/>
         
-        <p>Login: @ViewBag.login</p>
-        <p>Hasło: @ViewBag.password</p>
-        <br/>
+        
         
                                                     
         <form asp-controller="AppController" asp-action="EditCoffees" action="/editCoffees" method="get">

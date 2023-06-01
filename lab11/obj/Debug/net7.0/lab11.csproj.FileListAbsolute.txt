@@ -84,3 +84,4 @@
 /Users/patrykknapek/RiderProjects/Coffity/lab11/obj/Debug/net7.0/lab11.genruntimeconfig.cache
 /Users/patrykknapek/RiderProjects/Coffity/lab11/obj/Debug/net7.0/ref/lab11.dll
 /Users/patrykknapek/RiderProjects/Coffity/lab11/bin/Debug/net7.0/lab11.staticwebassets.runtime.json
+/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/bin/Debug/net7.0/lab11.staticwebassets.runtime.json

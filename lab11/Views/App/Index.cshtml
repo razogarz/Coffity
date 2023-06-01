@@ -34,7 +34,14 @@
         <h1 class="Logo">Coffity &#9749; </h1>
         <h2>By <a>Mateusz</a> & <a>Patryk</a> </h2>
     </div>
-
+    
+    @if (ViewBag.login != null && ViewBag.password != null) {
+        <a href="/panel">Go back to panel</a>
+    }
+    else{
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+    }
 
     @if (ViewBag.coffe_list != null)
     {
@@ -65,8 +72,7 @@
             </div>
         </form>
     }
-    else
-    {
+    else {
         <p>No categories available.</p>
     }
 
@@ -79,7 +85,7 @@
                 <li class="CoffeeCard">
                     <img src="@cof.Item3" class="CoffeImage"/>
                     @(cof.Item2) &nbsp;
-                    <form asp-controller="AppController" asp-action="Coffe" action="/coffe" method="post">
+                    <form asp-controller="AppController" asp-action="Coffe" action="/coffe" method="get">
                         <input type="hidden" id="id" name="id" value="@(cof.Item1)"/>
                         <div>
                             <button type="submit">Learn more!</button>

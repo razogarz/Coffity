@@ -21,6 +21,15 @@ public class AppController : Controller {
     [Route("/")]
     public IActionResult Index(string categories = null, string sort = null) {
         
+        var login = HttpContext.Session.GetString("login");
+        var password = HttpContext.Session.GetString("haslo");
+
+        if (login != null && password != null)
+        {
+            ViewBag.Login = login;
+            ViewBag.Password = password;
+        }
+        
         HashSet<string> _selected_categories = new HashSet<string>();
         if (categories != null)
         {
@@ -104,13 +113,15 @@ public class AppController : Controller {
     {
         string login = form["login"].ToString();
         string password = form["password"].ToString();
-        
-        if (_connector.ValidateUser(login, password))
+
+        var validation = _connector.ValidateUser(login, password);
+        if (validation.Item1)
         {
             ViewBag.Login = login;
             ViewBag.Password = password;
             HttpContext.Session.SetString("login", login);
             HttpContext.Session.SetString("haslo", password);
+            HttpContext.Session.SetString("admin", validation.Item2.ToString());
             return Redirect("/panel/");
         }
         
@@ -126,6 +137,60 @@ public class AppController : Controller {
         
     }
 
+    [HttpGet]
+    [Route("/register/")]
+    public IActionResult Register() {
+        var login = HttpContext.Session.GetString("login");
+        var password = HttpContext.Session.GetString("haslo");
+
+        if (login != null && password != null) {
+            return Redirect("/panel/");
+        }
+
+        if (_return_with_paths) {
+            return View("Register.cshtml");
+        }
+        else {
+            return View();
+        }
+    }
+
+
+    [HttpPost]
+    [Route("/register/")]
+    public IActionResult Register(IFormCollection form) {
+        string login = form["login"].ToString();
+        string password = form["password"].ToString();
+
+        if (password.Length >= 4 && login.Length >= 4) {
+
+            var exists = _connector.ExistsUser(login);
+            if (exists) {
+                ViewBag.ErrorMessage = "User with such login already exists";
+            }
+            else {
+                if (_connector.AddUser(login, password)) {
+                    ViewBag.ErrorMessage = "Account created. You can log in now.";
+                }
+                else {
+                    ViewBag.ErrorMessage = "Error while creating account";
+                }
+            }
+        }
+        else{
+            ViewBag.ErrorMessage = "Password and login must be at least 4 characters long";
+        }
+
+
+        if (_return_with_paths) {
+            return View("Register.cshtml");
+        }
+        else {
+            return View();
+        }
+        
+    }
+    
     [HttpPost] 
     [Route("/logout/")]
     public IActionResult HandleLogoutForm(IFormCollection form)
@@ -157,6 +222,7 @@ public class AppController : Controller {
 
         return Redirect("/login/");
     }
+
     
     [HttpGet]
     [Route("/editCoffees/")]
@@ -213,11 +279,10 @@ public class AppController : Controller {
             return View();
         }
     }
-    
+
     [HttpPost]
     [Route("/saveCoffeeEdit/")]
-    public IActionResult SaveCoffeeEdit(IFormCollection form)
-    {
+    public IActionResult SaveCoffeeEdit(IFormCollection form) {
         int id = Int32.Parse(form["id"]);
         string name = form["name"].ToString();
         string image = form["image"].ToString();
@@ -225,87 +290,21 @@ public class AppController : Controller {
         _connector.UpdateCoffee(id, name, image, desc);
         return Redirect("/editCoffees/");
     }
-    
-    //
-    // [HttpGet]
-    // [Route("/critical/")]
-    // public IActionResult CriticalAsset()
-    // {
-    //     var login = HttpContext.Session.GetString("login");
-    //     var password = HttpContext.Session.GetString("haslo");
-    //     
-    //     if (login == null || password == null) {
-    //         return Redirect("/login/");
-    //     }
-    //     
-    //     return View("Critical.cshtml");
-    // }
-    //
-    // [HttpGet]
-    // [Route("/data/")]
-    // public IActionResult Data()
-    // {
-    //     var login = HttpContext.Session.GetString("login");
-    //     var password = HttpContext.Session.GetString("haslo");
-    //     
-    //     if (login == null || password == null) {
-    //         return Redirect("/login/");
-    //     }
-    //     
-    //     // ViewBag.Data = _connector.GetCoffe() ?? new List<(int,string)>();
-    //     ViewBag.Data = new List<(int,string)>();
-    //     
-    //     return View("Data.cshtml");
-    // }
-    //
-    // [HttpPost] 
-    // [Route("/data/add")]
-    // public IActionResult HandleAddDataForm(IFormCollection form)
-    // {
-    //     
-    //     var login = HttpContext.Session.GetString("login");
-    //     var password = HttpContext.Session.GetString("haslo");
-    //     
-    //     if (login == null || password == null) {
-    //         return Redirect("/login/");
-    //     }
-    //     
-    //     string new_data = form["new_data"].ToString();
-    //
-    //     // _connector.AddData(new_data);
-    //     
-    //     return Redirect("/data/");
-    // }
-    //
-    // [HttpPost] 
-    // [Route("/data/delete")]
-    // public IActionResult HandleDeleteDataForm(IFormCollection form)
-    // {
-    //     
-    //     var login = HttpContext.Session.GetString("login");
-    //     var password = HttpContext.Session.GetString("haslo");
-    //     
-    //     if (login == null || password == null) {
-    //         return Redirect("/login/");
-    //     }
-    //     
-    //     int id = Int32.Parse(form["id"].ToString());
-    //
-    //     // _connector.RemoveData(id);
-    //     
-    //     return Redirect("/data/");
-    // }
-    //
-    
-    
-    [HttpPost]
+
+    [HttpGet]
     [Route("/coffe")]
-    public IActionResult Coffe(IFormCollection form) {
-        int id = Int32.Parse(form["id"].ToString());
-
-        ViewBag.coffe = _connector.GetCoffeWithRecipeAndCategories(id);
+    public IActionResult Coffe(int? id = null) {
+        if (id == null)
+        {
+            return Redirect("/");
+        }
         
-
+        ViewBag.coffe = _connector.GetCoffeWithRecipeAndCategories((int)id);
+        ViewBag.logged = HttpContext.Session.GetString("login") != null;
+        ViewBag.admin = HttpContext.Session.GetString("admin") == "True";
+        ViewBag.userLikesCoffe = _connector.GetIfUserLikesCoffe(
+            HttpContext.Session.GetString("login"),
+            (int)id);
         
         if (_return_with_paths){
             return View("Coffe.cshtml");
@@ -315,6 +314,25 @@ public class AppController : Controller {
         }
         
     }
+    
+    [HttpPost]
+    [Route("/coffe/like")]
+    public IActionResult HandleLikeCoffe(IFormCollection form) {
+        var login = HttpContext.Session.GetString("login");
+        var password = HttpContext.Session.GetString("haslo");
+
+        if (login == null || password == null) {
+            return Redirect("/");
+        }
+        
+        bool like = form["like"].ToString() == "on";
+        int coffe_id = Int32.Parse(form["coffe_id"].ToString());
+        
+        _connector.LikeCoffe(login, coffe_id, like);
+
+        return Redirect("/coffe?id=" + coffe_id);
+    }
+
     
     [HttpGet]
     [Route("/category/{cat_name}")]

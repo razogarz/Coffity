@@ -25,7 +25,7 @@
     
 
     @{
-       var coffee = ViewBag.coffe as (int, string, string, string, string, string, List<string>)?;
+       var coffee = ViewBag.coffe as (int, string, string, string, string, string, List<string>, int)?;
    }
    
    @if (coffee != null)
@@ -46,11 +46,24 @@
                <h4>Categories:</h4>
                <div class="flex">
                    @foreach (string cat in coffee?.Item7)
-                      {
-                          <a href="category/@cat"><button>@cat</button></a>
-                      }
+                   {
+                       <a href="category/@cat"><button>@cat</button></a>
+                   }
                </div>
-                   
+               <h4>Likes:</h4>
+               <p>@coffee?.Item8</p>
+               @if (ViewBag.logged) {
+                   <form asp-controller="AppController" asp-action="HandleLikeCoffe" action="/coffe/like" method="post">
+                       <div>
+                           <input type="hidden" name="coffe_id" value="@coffee?.Item1"/>
+                           <input name="like" type="checkbox" checked="@ViewBag.userLikesCoffe"/>
+                           <button type="submit">Zapisz</button>
+                       </div>
+                   </form>
+               }
+               else {
+                   <p>Log int to like this coffe</p>
+               }
            </div>
        </div>
     }
