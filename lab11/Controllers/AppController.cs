@@ -147,10 +147,83 @@ public class AppController : Controller {
         {
             ViewBag.Login = login;
             ViewBag.Password = password;
-            return View("Panel.cshtml");
+            if (_return_with_paths){
+                return View("Panel.cshtml");
+            }
+            else{
+                return View();
+            }
         }
 
         return Redirect("/login/");
+    }
+    
+    [HttpGet]
+    [Route("/editCoffees/")]
+    public IActionResult EditCoffees(string categories = null, string sort = null)
+    {
+        HashSet<string> _selected_categories = new HashSet<string>();
+        if (categories != null)
+        {
+            string[] cat_names_array = categories.Split(';');
+            foreach (var cat_name in cat_names_array)
+            {
+                _selected_categories.Add(cat_name);
+            }
+        }
+        List<(string, bool)> cats_list = new List<(string, bool)>();
+        foreach (var category in _categories)
+        {
+            cats_list.Add((category, _selected_categories.Contains(category)));
+        }
+        ViewBag.cats_list = cats_list;
+
+        if (sort == null)
+        {
+            sort = "asc";
+        }
+        ViewBag.sort = sort;
+
+        var coffe_list = _connector.GetCoffe(_selected_categories, sort);
+        if (coffe_list != null) {
+            ViewBag.coffe_list = coffe_list;
+        }
+
+        if (_return_with_paths){
+            return View("EditCoffees.cshtml");
+        }
+        else{
+            return View();
+        }
+    }
+    
+    [HttpPost]
+    [Route("/coffeeEditForm/")]
+    public IActionResult CoffeeEditForm(IFormCollection form)
+    {
+        int id = Int32.Parse(form["id"].ToString());
+
+        ViewBag.coffe = _connector.GetCoffeWithRecipeAndCategories(id);
+
+        
+        if (_return_with_paths){
+            return View("CoffeeEditForm.cshtml");
+        }
+        else{
+            return View();
+        }
+    }
+    
+    [HttpPost]
+    [Route("/saveCoffeeEdit/")]
+    public IActionResult SaveCoffeeEdit(IFormCollection form)
+    {
+        int id = Int32.Parse(form["id"]);
+        string name = form["name"].ToString();
+        string image = form["image"].ToString();
+        string desc = form["description"].ToString();
+        _connector.UpdateCoffe(id, name, image, desc);
+        return Redirect("/editCoffees/");
     }
     
     //

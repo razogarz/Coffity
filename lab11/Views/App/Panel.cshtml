@@ -7,7 +7,8 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="~/Css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Css/style.css")" asp-append-version="true" />
+
 </head>
 <body>
 <div>
@@ -20,7 +21,12 @@
         <p>Hasło: @ViewBag.password</p>
         <br/>
         
-        <a href="/list">Lista dostępnych podstron</a><br/><br/>
+                                                    
+        <form asp-controller="AppController" asp-action="EditCoffees" action="/editCoffees" method="get">
+            <div>
+                <button type="submit">Edytuj kawki</button>
+            </div>
+        </form>
 
         <form asp-controller="AppController" asp-action="HandleLogoutForm" action="/logout" method="post">
             <div>

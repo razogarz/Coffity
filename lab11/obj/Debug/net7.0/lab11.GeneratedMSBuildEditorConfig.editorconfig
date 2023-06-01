@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0NvZmZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/CoffeeEditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0NvZmZlZUVkaXRGb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/EditCoffees.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0VkaXRDb2ZmZWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

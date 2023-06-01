@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Data.Sqlite;
 
 namespace lab10; 
@@ -320,4 +321,20 @@ public class Connector {
     //     }
     // }
 
+    public void UpdateCoffe(int id, string name, string image, string desc)
+    {
+        int idd = id;
+        string namee = name;
+        string imagee = image;
+        string descc = desc;
+        using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+        {
+            connection.Open();
+            SqliteCommand cmd = connection.CreateCommand();
+
+            cmd.CommandText = $"UPDATE coffe SET name = {namee}, img = {imagee}, description = {descc} WHERE id = {idd};";
+            cmd.ExecuteNonQuery();
+        }
+        
+    }
 }

@@ -1,0 +1,48 @@
+@page
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>Coffity</title>
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Css/style.css")" asp-append-version="true" />
+    </head>
+<body>
+<div class="TopBar">
+    <div>
+        <a href="/panel">
+            <button>< Go back</button>
+        </a>
+    </div>
+    <h2>Editing Panel</h2>
+</div>
+<div>
+    <p class="CategoryHeader">Coffees:</p>
+        <ul class="CoffeeCardList">
+            @if (ViewBag.coffe_list != null)
+            {
+                @foreach (ValueTuple<int, string, string, string> cof in ViewBag.coffe_list)
+                {
+                    <li class="CoffeeCard">
+                        <img src="@cof.Item3" class="CoffeImage"/>
+                        @(cof.Item2) &nbsp;
+                        <form asp-controller="AppController" asp-action="CoffeeEditForm" action="/coffeeEditForm" method="post">
+                            <input type="hidden" id="id" name="id" value="@(cof.Item1)"/>
+                            <div>
+                                <button type="submit">Edit this coffee</button>
+                            </div>
+                        </form>
+                    </li>
+                }
+            }
+        </ul>
+</div>
+
+
+
+</body>
+</html>
+

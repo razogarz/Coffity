@@ -1,0 +1,42 @@
+@page
+
+@{
+    Layout = null;
+}
+
+<!Doctype html>
+<html>
+<head>
+        <title>Coffity</title>
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Css/style.css")" asp-append-version="true" />
+    </head>
+<body>
+<div class="TopBar">
+    <div>
+        <a href="/editCoffees">
+            <button>< Go back</button>
+        </a>
+    </div>
+    <h2>Editing Panel</h2>
+</div>
+<div>
+    @{
+           var coffee = ViewBag.coffe as (int, string, string, string, string, string, List<string>)?;
+    }
+    <form asp-controller="AppController" asp-action="SaveCoffeeEdit" action="/saveCoffeeEdit" method="post">
+        <input type="text" name="id" value="@coffee?.Item1" hidden/>
+        <div class="CoffeeDescText">
+            <h3>Name:</h3>
+            <textarea name="name">@coffee?.Item2</textarea>
+            <h3>Image:</h3>
+            <textarea name="image">@coffee?.Item3</textarea>
+            <h3>Description:</h3>
+            <textarea name="description" >@coffee?.Item4</textarea>
+        </div>
+        <button type="submit">Zapisz</button>
+    </form>
+    <button type="submit" style="display:none">Usuń Pozycje</button>
+    
+</div>
+</body>
+</html>
