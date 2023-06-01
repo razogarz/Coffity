@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "rT3+O2FeUJTgOOm81RuZhMwMORIjpNEwcsyYmngThzQ=",
+  "Hash": "6po6vBjIMeNdZ31gRfu8vsbaWM8fz38QO5Br/412jIo=",
   "Source": "lab11",
   "BasePath": "_content/lab11",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "lab11/wwwroot",
+      "Source": "lab11",
+      "ContentRoot": "/Users/patrykknapek/RiderProjects/Coffity/lab11/wwwroot/",
+      "BasePath": "_content/lab11",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/patrykknapek/RiderProjects/Coffity/lab11/wwwroot/Css/style.css",
+      "SourceId": "lab11",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/patrykknapek/RiderProjects/Coffity/lab11/wwwroot/",
+      "BasePath": "_content/lab11",
+      "RelativePath": "Css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Css/style.css"
+    }
+  ]
 }

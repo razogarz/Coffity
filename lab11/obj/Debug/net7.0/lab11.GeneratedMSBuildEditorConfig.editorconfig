@@ -9,25 +9,25 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = lab10
 build_property.RootNamespace = lab10
-build_property.ProjectDir = /home/m_zsuetam/crs/pz2/Coffity/lab11/
+build_property.ProjectDir = /Users/patrykknapek/RiderProjects/Coffity/lab11/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/m_zsuetam/crs/pz2/Coffity/lab11
+build_property.MSBuildProjectDirectory = /Users/patrykknapek/RiderProjects/Coffity/lab11
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Coffe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Q29mZmUuY3NodG1s
+[/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/Coffe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0NvZmZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
+[/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TG9naW4uY3NodG1s
+[/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0xvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Panel.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFuZWwuY3NodG1s
+[/Users/patrykknapek/RiderProjects/Coffity/lab11/Views/App/Panel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL1BhbmVsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

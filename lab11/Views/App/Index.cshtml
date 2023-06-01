@@ -1,4 +1,5 @@
 @page
+@using System.Globalization
 
 @{
     Layout = null;
@@ -9,6 +10,8 @@
 <html>
 <head>
     <title>Coffity</title>
+    <encoding utf-8></encoding>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Css/style.css")" asp-append-version="true" />
     <script>
     function changeHiddenValue() {
         var sortInput = document.getElementById("sort_input");
@@ -27,38 +30,54 @@
 </head>
 <body>
 <div>
-    <h1>Coffity</h1>
-    
-    
-    @if (ViewBag.coffe_list != null) {
-        <form asp-controller="AppController" asp-action="HandleCategories" action="/filters" method="post">
-            <h4>Categories:</h4>
-            @foreach ((string, bool) category in ViewBag.cats_list) {
-                <div>
-                    <label>
-                        <input type="checkbox" name="selectedCategories" value="@category.Item1" checked="@(category.Item2)"/>
-                        @category.Item1.Replace('_', ' ')
-                    </label>
-                </div>
-            }
-            <h4>Sorting:</h4>
-            <input type="hidden" name="sort" id="sort_input" value="@ViewBag.sort"/>
-            <label id="sort_label">By name (@ViewBag.sort)</label>
-            <button type="button" onclick="changeHiddenValue()">Change sorting</button>
+    <div class="TopBar">
+        <h1 class="Logo">Coffity &#9749; </h1>
+        <h2>By <a>Mateusz</a> & <a>Patryk</a> </h2>
+    </div>
 
-            <br><br>
-            <button type="submit">Filter!</button>
+
+    @if (ViewBag.coffe_list != null)
+    {
+        <form asp-controller="AppController" asp-action="HandleCategories" action="/filters" method="post">
+            <p class="CategoryHeader">Categories:</p>
+            <div class="CardList">
+                @foreach ((string, bool) category in ViewBag.cats_list)
+                {
+                    <div class="Card">
+                        <label>
+                            <input type="checkbox" name="selectedCategories" value="@category.Item1" checked="@(category.Item2)"/>
+                            @category.Item1.Replace('_', ' ')
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="FilterWrapper">
+                <div class="FilterDesc">
+                    <h1>Sorting: </h1>
+                    <input type="hidden" name="sort" id="sort_input" value="@ViewBag.sort"/>
+                    <label id="sort_label">
+                        <h1>By name (@ViewBag.sort)</h1></label>
+                </div>
+                <div>
+                    <button type="button" onclick="changeHiddenValue()"><h3>Change sorting</h3></button>
+                                    <button type="submit">Filter!</button>
+                </div>
+            </div>
         </form>
     }
-    else {
+    else
+    {
         <p>No categories available.</p>
     }
-    
-    <h2>Coffees:</h2>
-    <ul>
-        @if (ViewBag.coffe_list != null) {
-            @foreach (ValueTuple<int, string, string, string> cof in ViewBag.coffe_list) {
-                <li>
+
+    <p class="CategoryHeader">Coffees:</p>
+    <ul class="CardList">
+        @if (ViewBag.coffe_list != null)
+        {
+            @foreach (ValueTuple<int, string, string, string> cof in ViewBag.coffe_list)
+            {
+                <li class="CoffeeCard">
+                    <img src="@cof.Item3" class="CoffeImage"/>
                     @(cof.Item2) &nbsp;
                     <form asp-controller="AppController" asp-action="Coffe" action="/coffe" method="post">
                         <input type="hidden" id="id" name="id" value="@(cof.Item1)"/>

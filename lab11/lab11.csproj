@@ -20,4 +20,12 @@
       <_ContentIncludedByDefault Remove="Controllers\Pages\Panel.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\Css\style.css" />
+    </ItemGroup>
+
 </Project>

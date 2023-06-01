@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj": {}
+    "/Users/patrykknapek/RiderProjects/Coffity/lab11/lab11.csproj": {}
   },
   "projects": {
-    "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj": {
+    "/Users/patrykknapek/RiderProjects/Coffity/lab11/lab11.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj",
+        "projectUniqueName": "/Users/patrykknapek/RiderProjects/Coffity/lab11/lab11.csproj",
         "projectName": "lab11",
-        "projectPath": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/lab11.csproj",
-        "packagesPath": "/home/m_zsuetam/.nuget/packages/",
-        "outputPath": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/obj/",
+        "projectPath": "/Users/patrykknapek/RiderProjects/Coffity/lab11/lab11.csproj",
+        "packagesPath": "/Users/patrykknapek/.nuget/packages/",
+        "outputPath": "/Users/patrykknapek/RiderProjects/Coffity/lab11/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/m_zsuetam/.nuget/NuGet/NuGet.Config"
+          "/Users/patrykknapek/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/home/m_zsuetam/.dotnet/sdk/7.0.302/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/m_zsuetam/.dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }
