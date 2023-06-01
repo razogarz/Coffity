@@ -87,7 +87,7 @@ button:active {
 .FilterWrapper {
     display:flex;
     flex-direction: column;
-    
+    padding-left: 1rem;
 }
 .FilterDesc {
     display:flex;
@@ -104,6 +104,12 @@ button:active {
 .CardList {
     display:flex;
     flex-wrap:wrap;
+    margin-right:2rem;
+}
+
+.CoffeeCardList {
+    display:flex;
+    flex-wrap:wrap;
     justify-content: space-between;
     margin-right:2rem;
 }
@@ -114,7 +120,6 @@ button:active {
     padding:1.5rem;
     margin:1rem;
     background-color: var(--contrast);
-    width:auto;
     font-size:1.5rem;
     border-radius: 3px;
 }
