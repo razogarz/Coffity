@@ -7,14 +7,22 @@
 <html>
 <head>
     <title>Coffity</title>
-    <link rel="stylesheet" href="~/Css/style.css" asp-append-version="true"/>
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Css/style.css")" asp-append-version="true" />
+
     
 </head>
 <body>
 <div>
-    <h1 class="Logo">Coffity</h1>
+    <div class="TopBar">
+        <div class="flex">
+            <a href="/">
+                <button>< Go back</button>
+            </a>
+        </div>
+        <h1 class="Logo">Coffity &#9749; </h1>
+    </div>
     
-    <a href="/">< Go back</a>
+    
 
     @{
        var coffee = ViewBag.coffe as (int, string, string, string, string, string, List<string>)?;
@@ -22,25 +30,29 @@
    
    @if (coffee != null)
    {
-        <div>
-            <h2>@coffee?.Item2</h2>
-            <img src="@coffee?.Item3" alt="@coffee?.Item2">
-            <h3>Description:</h3>
-            <p>@coffee?.Item4</p>
-            <h3>Ingredients:</h3>
-            <p>@coffee?.Item5</p>
-            <h3>Recipe:</h3>
-            <p>@coffee?.Item6</p>
-            <h4>Categories:</h4>
-            <ul>
-                @foreach (string cat in coffee?.Item7)
-                {
-                    <li>
-                        <a href="category/@cat">@cat</a>
-                    </li>
-                }
-            </ul>
-        </div>
+       <div class="CoffeeDesc">
+           <div>
+               <h2 class="CategoryHeader text-center">@coffee?.Item2</h2>
+                          <img src="@coffee?.Item3" alt="@coffee?.Item2" class="CoffeeDescImg">
+           </div>
+           
+           <div class="CoffeeDescText">
+               <h3>Description:</h3>
+               <p>@coffee?.Item4</p>
+               <h3>Ingredients:</h3>
+               <p>@coffee?.Item5</p>
+               <h3>Recipe:</h3>
+               <p>@coffee?.Item6</p>
+               <h4>Categories:</h4>
+               <div class="flex">
+                   @foreach (string cat in coffee?.Item7)
+                      {
+                          <a href="category/@cat"><button>@cat</button></a>
+                      }
+               </div>
+                   
+           </div>
+       </div>
     }
     else
     {

@@ -104,13 +104,14 @@ button:active {
 .CardList {
     display:flex;
     flex-wrap:wrap;
+    align-items: baseline;
     margin-right:2rem;
 }
-
 .CoffeeCardList {
     display:flex;
     flex-wrap:wrap;
-    justify-content: space-between;
+    align-items: baseline;
+    justify-content: center;
     margin-right:2rem;
 }
 
@@ -130,15 +131,47 @@ button:active {
     justify-content: center;
     text-align: center;
     margin:1rem;
-    padding-top:1.5rem;
     background-color: var(--contrast);
-    width:auto;
+    width: 13%;
+    height: auto;
     font-size:1.1rem;
-    max-width: 15%;
+    border: 0.2px solid black;
     border-radius: 3px;
+}
+.CoffeeCard:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 4px 12px;
+    transform: scale(1.1);
+    transition: 0.5s;
 }
 
 .CoffeImage {
     width:100%;
     height:10rem;
+}
+
+.CoffeeDesc {
+    margin-top:5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    
+}
+
+.CoffeeDescText {
+    padding: 1rem;
+    font-size:1.25rem;
+}
+
+.CoffeeDescImg {
+
+}
+
+.flex {
+    display:flex;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
 }
