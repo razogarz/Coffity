@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/lab11.csproj": {}
+    "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/Coffity.csproj": {}
   },
   "projects": {
-    "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/lab11.csproj": {
+    "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/Coffity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/lab11.csproj",
-        "projectName": "lab11",
-        "projectPath": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/lab11.csproj",
+        "projectUniqueName": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/Coffity.csproj",
+        "projectName": "Coffity",
+        "projectPath": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/Coffity.csproj",
         "packagesPath": "/Users/patrykknapek/.nuget/packages/",
-        "outputPath": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/obj/",
+        "outputPath": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/patrykknapek/.nuget/NuGet/NuGet.Config"
@@ -38,9 +38,25 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             }
           },
           "imports": [

@@ -31,17 +31,24 @@
 <body>
 <div>
     <div class="TopBar">
+        <div style="font-size:2rem">
+                
+            @if (ViewBag.login != null && ViewBag.password != null)
+            {
+                <a href="/panel">Go back to panel</a>
+            }
+            else
+            {
+                <a href="/login">login</a>
+                <a href="/register">register</a>
+            }
+        </div>
         <h1 class="Logo">Coffity &#9749; </h1>
+        
         <h2>By <a>Mateusz</a> & <a>Patryk</a> </h2>
     </div>
     
-    @if (ViewBag.login != null && ViewBag.password != null) {
-        <a href="/panel">Go back to panel</a>
-    }
-    else{
-        <a href="/login">login</a>
-        <a href="/register">register</a>
-    }
+    
 
     @if (ViewBag.coffe_list != null)
     {

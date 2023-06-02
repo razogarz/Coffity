@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dElvgrikcMvJUGGt1bYyAtQ3Co2H2zaAc7B9S8jKWZs=",
+  "Hash": "7uczuREEyREbxzjf8dyWMmCqzm+ErnBVx/tXQNWU3dQ=",
   "Source": "lab11",
   "BasePath": "_content/lab11",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "lab11/wwwroot",
       "Source": "lab11",
-      "ContentRoot": "/home/m_zsuetam/crs/pz2/Coffity/lab11/wwwroot/",
+      "ContentRoot": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/wwwroot/",
       "BasePath": "_content/lab11",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/wwwroot/Css/style.css",
+      "Identity": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/wwwroot/Css/style.css",
       "SourceId": "lab11",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/m_zsuetam/crs/pz2/Coffity/lab11/wwwroot/",
+      "ContentRoot": "/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/wwwroot/",
       "BasePath": "_content/lab11",
       "RelativePath": "Css/style.css",
       "AssetKind": "All",
