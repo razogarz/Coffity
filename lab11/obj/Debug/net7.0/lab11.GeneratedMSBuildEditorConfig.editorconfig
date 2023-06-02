@@ -9,37 +9,37 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = lab10
 build_property.RootNamespace = lab10
-build_property.ProjectDir = /Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/
+build_property.ProjectDir = /home/m_zsuetam/crs/pz2/Coffity/lab11/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11
+build_property.MSBuildProjectDirectory = /home/m_zsuetam/crs/pz2/Coffity/lab11
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/Coffe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0NvZmZlLmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Coffe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29mZmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/CoffeeEditForm.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0NvZmZlZUVkaXRGb3JtLmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/CoffeeEditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29mZmVlRWRpdEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/EditCoffees.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0VkaXRDb2ZmZWVzLmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/EditCoffees.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RWRpdENvZmZlZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0luZGV4LmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL0xvZ2luLmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/Panel.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL1BhbmVsLmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Panel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFuZWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/patrykknapek/RiderProjects/coffcheck/Coffity/lab11/Views/App/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwL1JlZ2lzdGVyLmNzaHRtbA==
+[/home/m_zsuetam/Documents/Uni/courses/SEMESTR_4/pz2/Coffity/lab11/Views/App/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

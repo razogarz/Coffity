@@ -20,3 +20,6 @@ a administratorzy możliwość edycji.
 - rejestracja i logowanie
 - polubianie produktów (dla zalogowanych użytkowników)
 - edycja produktów (dla zalogowanych administratorów)
+
+### Credits:
+[BBC goodfood - Coffee recipes](https://www.bbcgoodfood.com/recipes/collection/coffee-recipes)
