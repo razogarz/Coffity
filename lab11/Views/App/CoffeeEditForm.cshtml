@@ -21,7 +21,7 @@
 </div>
 <div>
     @{
-           var coffee = ViewBag.coffe as (int, string, string, string, string, string, List<string>)?;
+           var coffee = ViewBag.coffe as (int, string, string, string, string, string, List<string>, int)?;
     }
     <form asp-controller="AppController" asp-action="SaveCoffeeEdit" action="/saveCoffeeEdit" method="post">
         <input type="text" name="id" value="@coffee?.Item1" hidden/>
