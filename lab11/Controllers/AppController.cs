@@ -222,7 +222,7 @@ public class AppController : Controller {
         string name = form["name"].ToString();
         string image = form["image"].ToString();
         string desc = form["description"].ToString();
-        _connector.UpdateCoffe(id, name, image, desc);
+        _connector.UpdateCoffee(id, name, image, desc);
         return Redirect("/editCoffees/");
     }
     

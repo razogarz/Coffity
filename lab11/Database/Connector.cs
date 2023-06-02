@@ -321,7 +321,7 @@ public class Connector {
     //     }
     // }
 
-    public void UpdateCoffe(int id, string name, string image, string desc)
+    public void UpdateCoffee(int id, string name, string image, string desc)
     {
         int idd = id;
         string namee = name;
@@ -332,9 +332,8 @@ public class Connector {
             connection.Open();
             SqliteCommand cmd = connection.CreateCommand();
 
-            cmd.CommandText = $"UPDATE coffe SET name = {namee}, img = {imagee}, description = {descc} WHERE id = {idd};";
+            cmd.CommandText = $"UPDATE coffe SET name = '{namee}', img = '{imagee}', description = '{descc}' WHERE id = {idd};";
             cmd.ExecuteNonQuery();
         }
-        
     }
 }
